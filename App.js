@@ -1,5 +1,6 @@
 //  rnf rncredux rnfs
 import React, { useState } from 'react';
+import * as Font from 'expo-font';
 import {
   StyleSheet,
   View,
@@ -8,20 +9,34 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import Home from './screens/home';
-import About from './screens/about';
-import ReviewDetails from './screens/reviewDetails';
 
-export default function App() {
-  return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      {/* <View style={styles.container}></View> */}
-      <Home />
-      <About />
-      <ReviewDetails />
-    </TouchableWithoutFeedback>
-  );
-}
+import { AppLoading } from 'expo';
+import Navigator from './routes/drawer';
+import { globalStyles } from './styles/global';
+
+const getFonts = () =>
+  Font.loadAsync({
+    craftyboys: require('./assets/fonts/craftyboys.ttf'),
+  });
+
+const App = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if (fontsLoaded) {
+    return (
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={globalStyles.container}>
+          <Navigator />
+        </View>
+      </TouchableWithoutFeedback>
+    );
+    // return <Navigator />;
+  } else {
+    return (
+      <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
+    );
+  }
+};
 
 // const styles = StyleSheet.create({
 //   container: {
@@ -29,3 +44,5 @@ export default function App() {
 //     backgroundColor: '#fff',
 //   },
 // });
+
+export default App;
