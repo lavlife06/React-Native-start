@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { globalStyles, images } from '../styles/global';
 import Card from '../shared/card';
+import Header from '../shared/header';
 
 const ReviewDetails = ({ navigation }) => {
   //  navigation comes from screen.navigation we set in homeStack
@@ -12,6 +13,7 @@ const ReviewDetails = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
+      <Header title={'ReviewDetails'} navigation={navigation} />
       <Card>
         <Text style={globalStyles.titleText}>
           {navigation.getParam('title')}

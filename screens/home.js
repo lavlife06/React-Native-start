@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import Header from '../shared/header';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -52,6 +53,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
+      <Header title={'GameZone'} navigation={navigation} />
       <Modal visible={modalOpen} animationType="slide">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContent}>
@@ -90,11 +92,14 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   modalToggle: {
-    marginBottom: 10,
+    // marginTop: 5,
+    // alignItems: 'center',
+    marginTop: 6,
     borderWidth: 1,
     borderColor: 'black',
     padding: 4,
     borderRadius: 10,
+    backgroundColor: 'yellow',
     alignSelf: 'center',
   },
   modalClose: {

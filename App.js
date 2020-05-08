@@ -4,15 +4,14 @@ import * as Font from 'expo-font';
 import {
   StyleSheet,
   View,
-  FlatList,
-  Alert,
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-
+import SafeAreaView from 'react-native-safe-area-view';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppLoading } from 'expo';
 import Navigator from './routes/drawer';
-import { globalStyles } from './styles/global';
+import Header from './shared/header';
 
 const getFonts = () =>
   Font.loadAsync({
@@ -23,14 +22,20 @@ const App = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
+    // return (
+    //   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    //     <View style={globalStyles.container}>
+    //       <Navigator />
+    //     </View>
+    //   </TouchableWithoutFeedback>
+    // );
     return (
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={globalStyles.container}>
+      <SafeAreaProvider>
+        <SafeAreaView forceInset={{ top: 'always' }} style={{ flex: 1 }}>
           <Navigator />
-        </View>
-      </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
-    // return <Navigator />;
   } else {
     return (
       <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />

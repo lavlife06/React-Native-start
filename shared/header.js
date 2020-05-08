@@ -8,6 +8,7 @@ export default ({ title, navigation }) => {
   };
 
   return (
+    // <View style={{ flex: 1, height: 50 }}>
     <ImageBackground
       source={require('../assets/game_bg.png')}
       style={styles.header}
@@ -26,17 +27,17 @@ export default ({ title, navigation }) => {
         <Text style={styles.headerText}>{title}</Text>
       </View>
     </ImageBackground>
+    // </View>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
+    height: 50,
     width: '100%',
-    height: '100%',
     flexDirection: 'row',
-    marginBottom: 21,
-    marginRight: 85,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   headerText: {
     fontWeight: 'bold',
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   icon: {
-    marginLeft: 0,
+    position: 'absolute',
+    left: 10,
   },
   headerTitle: {
     flexDirection: 'row',
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
   headerImage: {
     width: 26,
     height: 26,
-    marginLeft: 70,
+    marginTop: 5,
+    // marginLeft: 70,
   },
 });
